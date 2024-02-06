@@ -1,7 +1,6 @@
 import timeit
 import random
 
-
 def linear_search(arr, target):
   for i in range(len(arr)):
     if arr[i] == target:
@@ -50,3 +49,33 @@ for size in vector_sizes:
     print(f"Average time for linear search: {average_linear_time} seconds")
     print(f"Average time for binary search: {average_binary_time} seconds")
     print()
+
+    import numpy as np
+    from scipy.optimize import curve_fit
+
+    def linear_func(x, a, b):
+      return a * x + b
+
+    def quadratic_func(x, a, b, c):
+      return a * x**2 + b * x + c
+
+    # Fit linear function
+    linear_params, _ = curve_fit(linear_func, vector_sizes, [average_linear_time for _ in vector_sizes])
+
+    # Fit quadratic function
+    quadratic_params, _ = curve_fit(quadratic_func, vector_sizes, [average_linear_time for _ in vector_sizes])
+
+    # Generate interpolated data points
+    interpolated_linear = linear_func(vector_sizes, *linear_params)
+    interpolated_quadratic = quadratic_func(vector_sizes, *quadratic_params)
+
+    # Plot the interpolated data points
+    import matplotlib.pyplot as plt
+
+    plt.plot(vector_sizes, [average_linear_time for _ in vector_sizes], 'ro', label='Actual Data')
+    plt.plot(vector_sizes, interpolated_linear, 'b-', label='Linear Interpolation')
+    plt.plot(vector_sizes, interpolated_quadratic, 'g-', label='Quadratic Interpolation')
+    plt.xlabel('Vector Size')
+    plt.ylabel('Average Time (seconds)')
+    plt.legend()
+    plt.show()
