@@ -11,16 +11,27 @@
 """
 import timeit
 import matplotlib.pyplot as plt
+import numpy as np
 
 def func(n):
   if n == 0 or n == 1:
     return n
   else:
     return func(n-1) + func(n-2)
-def compute_time1():
-  total_time = timeit.timeit(lambda: func(30), number=1)
-  return total_time
   
+nvalue= list(range(36))
+timevalue = []
+for i in nvalue:
+  total_time= timeit.timeit(lambda: func(i), number =1)
+  timevalue.append(total_time)
+
+plt.plot(nvalue, total_time)
+plt.xlabel("n")
+plt.ylabel("Time (sec)")
+plt.tittle("n vs Time")
+plt.savefig("ex1.6.1")
+plt.show()  
+
 memory ={}
 def func1(n):
   if n in memory:
@@ -32,13 +43,6 @@ def func1(n):
     memory[n] = fibo
   return fibo
 
-def compute_time2():
-  total_time = timeit.timeit(lambda: func1(30), number=1)
-  return total_time
-  
-               
 
-print("Time taken by the first function is: ", compute_time1())
-print("Time taken by the second function is: ", compute_time2())
 
 
