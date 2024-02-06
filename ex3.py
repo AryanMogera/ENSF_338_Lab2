@@ -6,7 +6,7 @@
     most time or consumes the most resources
 
 4. From the two profiling of the two functions test_function() had 203 function calls (202 primitive calls) in 0.001 seconds
-    and third_function() had 213 function calls (212 primitive calls) in 0.000 seconds. So executiontime goes to the test_function
+    and third_function() had 213 function calls (212 primitive calls) in 0.000 seconds. So execution time goes to the test_function
 
 '''
 import cProfile
@@ -14,7 +14,7 @@ import re
 import timeit
 
 def sub_function(n):
-    #sub function that calculates the factotial of n
+    #sub function that calculates the factorial of n
     if n == 0:
         return 1
     else:
