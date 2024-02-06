@@ -21,28 +21,48 @@ def func(n):
   
 nvalue= list(range(36))
 timevalue = []
-for i in nvalue:
-  total_time= timeit.timeit(lambda: func(i), number =1)
+
+for n in nvalue:
+  total_time= timeit.timeit(lambda: func(n), number =1)
   timevalue.append(total_time)
 
-plt.plot(nvalue, total_time)
+plt.plot(nvalue, timevalue)
 plt.xlabel("n")
 plt.ylabel("Time (sec)")
-plt.tittle("n vs Time")
-plt.savefig("ex1.6.1")
+plt.title("n vs Time")
+plt.savefig("ex1.6.1.jpg")
 plt.show()  
 
 memory ={}
 def func1(n):
   if n in memory:
     return memory[n]
-  if n <=2:
-    fibo = 1
   else:
-    fibo = func1(n-1) + func1(n-2)
-    memory[n] = fibo
+    if n <=2:
+      fibo = 1
+    else:
+      fibo = func1(n-1) + func1(n-2)
+      memory[n] = fibo
   return fibo
 
+nvalue= list(range(35))
+timevalue = []
 
+for n in nvalue:
+  total_time= timeit.timeit(lambda: func1(n), number =1)
+  timevalue.append(total_time)
+
+plt.plot(nvalue, timevalue)
+plt.xlabel("n")
+plt.ylabel("Time (sec)")
+plt.title("n vs Time")
+
+z= np.polyfit(nvalue, timevalue, 1)
+p= np.poly1d(z)
+plt.plot(nvalue, p(nvalue), label ="trend line", color = "red")
+
+plt.legend
+plt.savefig("ex1.6.2.jpg")
+plt.show()  
 
 
