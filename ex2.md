@@ -12,6 +12,23 @@ Certainly, the efficiency can be impacted when the assumption that the data is u
 
 The emphasized portion of the code, where the variable 'pos' is assigned, encapsulates the approach for locating the target element. It defines the strategy for dividing the data into two segments and subsequently seeks the target value along the most efficient search path.
 
-'''python
-pos = low + int(((float(high - low) / (arr[high] - arr[low])) * (x - arr[low])))
-'''
+```
+ pos = low + int(((float(high - low) / (arr[high] - arr[low])) * (x - arr[low]))) 
+```
+
+
+# Question 4
+
+Linear search becomes our singular choice when presented with unsorted data or when efficient random access is not allowed. Here binary and interpolation will fail to do their job as they require sorted collection of data and prediction of the positions in the data. Linear search remains superior here having the ability to sequentially scan elements. 
+
+
+# Question 5
+
+In case where the given dataset is small and already sorted. Having the target element at the beginning helps linear search to have a small initial processing time than the other methods with more complex implementations.
+
+# Question 6
+
+Certainly we can implement algorithms to pre-sort the data before applying binary and interpolation search. Pre sorting takes more processing and computational capabilities. 
+
+
+
